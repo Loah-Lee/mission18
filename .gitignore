@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+1팀_이소윤/.venv/
+1팀_이소윤/backend/.hf-cache/
+1팀_이소윤/backend/app/__pycache__/
+1팀_이소윤/frontend/__pycache__/
+1팀_이소윤/docs/__pycache__/
