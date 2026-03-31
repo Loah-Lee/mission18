@@ -1,3 +1,5 @@
+import os
+import shutil
 import sqlite3
 from pathlib import Path
 
@@ -5,7 +7,24 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATABASE_URL = f"sqlite:///{BASE_DIR / 'movies.db'}"
+DEFAULT_DB_PATH = BASE_DIR / "movies.db"
+DATABASE_PATH = Path(os.getenv("DATABASE_PATH", str(DEFAULT_DB_PATH))).expanduser()
+
+
+def _ensure_database_file():
+    if DATABASE_PATH == DEFAULT_DB_PATH:
+        return
+
+    if DATABASE_PATH.exists():
+        return
+
+    DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    if DEFAULT_DB_PATH.exists():
+        shutil.copy2(DEFAULT_DB_PATH, DATABASE_PATH)
+
+
+_ensure_database_file()
+DATABASE_URL = f"sqlite:///{DATABASE_PATH}"
 
 engine = create_engine(
     DATABASE_URL,
@@ -16,11 +35,10 @@ Base = declarative_base()
 
 
 def ensure_movies_autoincrement():
-    db_path = BASE_DIR / "movies.db"
-    if not db_path.exists():
+    if not DATABASE_PATH.exists():
         return
 
-    with sqlite3.connect(db_path) as conn:
+    with sqlite3.connect(DATABASE_PATH) as conn:
         row = conn.execute(
             "SELECT sql FROM sqlite_master WHERE type='table' AND name='movies'"
         ).fetchone()

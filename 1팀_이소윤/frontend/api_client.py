@@ -2,7 +2,25 @@ import os
 
 import requests
 
-BACKEND_BASE_URL = os.getenv("BACKEND_BASE_URL", "http://localhost:8000")
+
+def _resolve_backend_base_url() -> str:
+    env_value = os.getenv("BACKEND_BASE_URL")
+    if env_value:
+        return env_value.rstrip("/")
+
+    try:
+        import streamlit as st
+
+        secret_value = st.secrets.get("BACKEND_BASE_URL")
+        if secret_value:
+            return str(secret_value).rstrip("/")
+    except Exception:
+        pass
+
+    return "http://localhost:8000"
+
+
+BACKEND_BASE_URL = _resolve_backend_base_url()
 TIMEOUT_SECONDS = 10
 
 
