@@ -50,8 +50,6 @@ streamlit run app.py
 
 ## 배포 흐름
 
-1. Render에 FastAPI 백엔드를 배포한다.
-2. Streamlit Cloud에 프론트엔드를 배포한다.
-3. Streamlit Cloud의 `BACKEND_BASE_URL`을 Render 백엔드 주소로 설정한다.
-
-배포 상세 내용은 리포지토리 루트의 `DEPLOYMENT.md`를 참고하면 됩니다.
+1. 로컬에서 FastAPI 백엔드를 실행해 기능을 검증한다.
+2. Streamlit Cloud에는 프론트엔드만 배포한다.
+3. 제출용 캡처와 보고서는 로컬 실행 기준 결과를 사용한다.

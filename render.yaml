@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: mission18-backend
-    runtime: python
-    buildCommand: cd "1팀_이소윤/backend" && pip install -r requirements.txt
-    startCommand: cd "1팀_이소윤/backend" && uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.14

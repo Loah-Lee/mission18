@@ -24,11 +24,11 @@
 - [x] ERD 이미지 생성
 - [x] FastAPI Docs 전체 캡처
 - [x] 서비스 동작 캡처 이미지
-- [ ] Streamlit Cloud 배포 링크 반영
+- [x] Streamlit Cloud 배포 링크 반영
 
 ## 제출 직전 직접 확인할 것
 - [x] `http://127.0.0.1:8000/docs` 전체 화면 캡처
 - [x] 영화 페이지 캡처
 - [x] 리뷰 페이지 캡처
-- [ ] Streamlit Cloud 배포 성공 확인
-- [ ] 보고서 PDF 최종본에 캡처 이미지 반영
+- [x] Streamlit Cloud 배포 성공 확인
+- [ ] 보고서 PDF 최종본에 최신 캡처 이미지 반영
